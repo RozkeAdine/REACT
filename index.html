@@ -20,20 +20,50 @@
         function MyComponent (){
             return <div>ICI c'est le nouveau composant !</div>
         }
-        function Header (){
-            return <h1>
-                La maison jungle !
-                </h1>
+        function Banner (){
+            return <div>
+                <Header />
+                <Description />
+            </div>
         }
-        ReactDOM.render(<Header/>, 
+        function Cart (){
+            const monsteraPrice = 8;
+            const lierrePrice = 10;
+            const bouquetPrice = 15;
+            return <div>
+                <h2>Panier</h2>
+                <ul>
+                <li>Monstera {monsteraPrice} €</li>
+                <li>Lierre  {lierrePrice}€</li>
+                <li>Bouquet de fleurs {bouquetPrice}€</li>
+                </ul>
+                <p> total { monsteraPrice + lierrePrice + bouquetPrice} € </p>
+            </div>
+        }
+
+        function Header (){
+            const title ="La maison jungle !"
+            return <h1>
+                {title.toUpperCase()}
+            </h1>
+        }
+        function Description() {
+           const text = "Ici achetez toutes les plantes dont vous avez toujours rêvé"
+            return <p>{text}</p>                    //{text.slice(0, 11)} permet de decouper le text jusqu'au 11eme caractère
+
+        }
+        ReactDOM.render(                            //pouvoir mettre deux components sous un seul parent
+            <div>                                   
+                <Banner/>
+                <Cart/>
+            </div>,                                 // <div> peut etre remplacé par <react.fragment><react.fragment/>
         document.getElementById('root')
         )   
         ReactDOM.render(<MyComponent/>, 
         document.getElementById('react-goes-here')
         )
- 
         </script>
-    <script>console.log(React)</script>
+    <!-- <script>console.log(React)</script> -->
 
 </body>
 </html>
