@@ -1,17 +1,7 @@
-import { plantList } from "../datas/plantList"
-import "../Styles/ShoppingList.css"
+import { plantList } from '../datas/plantList'
+import PlantItem from './PlantItem'
+import '../styles/ShoppingList.css'
 
-
-// function ShoppingList() {
-//     return (
-//         <ul>
-//             {plantList.map(
-//                 (plant, index) => (                             //key doit etre unique donc mettre
-//                 <li key={`${plant}-${index}`}>{ plant }</li>    // le nom + l'index de la ligne
-//                 ))}                                             
-//         </ul>
-//     )
-// }
 function ShoppingList() {
 	const categories = plantList.reduce(
 		(acc, plant) =>
@@ -22,16 +12,19 @@ function ShoppingList() {
 	return (
 		<div>
 			<ul>
-				{categories.map((cat) => (           //installer emojisense
-					<li key={cat}>{cat}</li>         //(windows) ctrl + i pour afficher liste emoji
+				{categories.map((cat) => (
+					<li key={cat}>{cat}</li>
 				))}
 			</ul>
-			<ul className="lmj-plant-list">
-				{plantList.map((plant) => (
-					<li key={plant.id} className="lmj-plant-item">
-                        {plant.name}
-                        {plant.isSpecialOffer && <div className="lmj-sales">Soldes</div>}
-                    </li>
+			<ul className='lmj-plant-list'>
+				{plantList.map(({ id, cover, name, water, light }) => (
+					<PlantItem
+						key={id}
+						cover={cover}
+						name={name}
+						water={water}
+						light={light}
+					/>
 				))}
 			</ul>
 		</div>
@@ -39,4 +32,3 @@ function ShoppingList() {
 }
 
 export default ShoppingList
-
